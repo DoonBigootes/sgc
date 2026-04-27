@@ -1,6 +1,7 @@
 .container {
     display: flex;
     height: 100vh;
+    gap: 0;
 }
 
 .content {
@@ -8,6 +9,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: margin-left 0.25s ease;
 }
 
 .main {
@@ -15,4 +17,15 @@
   padding: 1.5rem;
   background: var(--color-bg);
   overflow-y: auto;
+}
+
+.sidebarWrapper {
+  width:  var(--sidebar-width);
+  flex-shrink: 0;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sidebarWrapperClosed {
+  width: 0;
 }

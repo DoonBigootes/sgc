@@ -1,19 +1,53 @@
 .sidebar {
   width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
   height: 100vh;
   background: var(--color-sidebar);
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  overflow-x: hidden; 
   overflow-y: auto;
+  transform: translateX(0);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: var(--font-size-lg);
   font-weight: bold;
   color: var(--color-accent);
-  padding: 0.5rem 0;
+  padding: 0 0.8rem;
+  height: 2rem;
   margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.logoActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.logoBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-3);
+  transition: background 150ms, color 150ms;
+}
+
+.logoBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent);
 }
 
 .nav {
@@ -28,35 +62,67 @@
   gap: 0.15rem;
 }
 
-.groupLabel {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-3);
-  padding: 0 0.5rem;
-  margin-bottom: 0.25rem;
-}
-
 .link {
-  color: #aaaaaa;
+  color: var(--color-text-3);
   text-decoration: none;
   padding: 0.4rem 0.5rem;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
   transition: background 0.15s, color 0.15s;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .link:hover {
-  background: #2a2a2a;
-  color: white;
+  background: var(--hover-on-black);
+  color: var(--color-text-4);
 }
 
 .linkActive {
-  color: white;
+  color: var(--color-text-4);
   text-decoration: none;
   padding: 0.4rem 0.5rem;
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   background: #2a2a2a;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Reemplaza el span .groupLabel por esto */
+.groupLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 0.6rem;
+  margin-bottom: 0.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-3);
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.groupLabel:hover {
+  color: var(--color-text-4);
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+  transform: rotate(0deg);
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.hidden {
+  transform: translateX(-100%);
 }

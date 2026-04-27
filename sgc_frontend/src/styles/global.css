@@ -9,6 +9,7 @@
   --color-text-1:    #171717;
   --color-text-2:    #444444;
   --color-text-3:    #888888;
+  --color-text-4:    white;
 
   /* Bordes */
   --color-border:    #e5e5e5;
@@ -37,6 +38,13 @@
   /* Layout */
   --sidebar-width:   220px;
   --topbar-height:   52px;
+  --z-tooltip:       1000;
+
+  /* Hover */
+  --hover-on-black: #2a2a2a;
+
+  /* Botones */
+  --button-padding: 0.2rem 0.3rem;
 }
 
 *, *::before, *::after {
