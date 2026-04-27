@@ -1,0 +1,39 @@
+.topbar {
+  height: var(--topbar-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.storeName {
+  font-weight: 500;
+  color: var(--color-text-1);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.username {
+  color: var(--color-text-3);
+  font-size: var(--font-size-sm);
+}
+
+.logoutBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-2);
+}
+
+.logoutBtn:hover {
+  background: var(--color-bg);
+}

@@ -1,0 +1,53 @@
+:root {
+  /* Colores principales */
+  --color-bg:        #f5f4f1;
+  --color-surface:   #ffffff;
+  --color-sidebar:   #171717;
+  --color-accent:    #d4a017;
+
+  /* Texto */
+  --color-text-1:    #171717;
+  --color-text-2:    #444444;
+  --color-text-3:    #888888;
+
+  /* Bordes */
+  --color-border:    #e5e5e5;
+
+  /* Estados */
+  --color-green:     #16a34a;
+  --color-green-bg:  #dcfce7;
+  --color-red:       #dc2626;
+  --color-red-bg:    #fee2e2;
+  --color-amber:     #d97706;
+  --color-amber-bg:  #fef3c7;
+  --color-blue:      #2563eb;
+  --color-blue-bg:   #dbeafe;
+
+  /* Tipografía */
+  --font-sans:       'Inter', system-ui, sans-serif;
+  --font-size-sm:    0.85rem;
+  --font-size-base:  1rem;
+  --font-size-lg:    1.25rem;
+
+  /* Espaciado */
+  --radius-sm:       4px;
+  --radius-md:       6px;
+  --radius-lg:       12px;
+
+  /* Layout */
+  --sidebar-width:   220px;
+  --topbar-height:   52px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--color-text-1);
+  background: var(--color-bg);
+}

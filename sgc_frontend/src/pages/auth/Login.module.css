@@ -1,0 +1,342 @@
+/*
+  Variables locales del login (tema oscuro propio).
+  Las que tienen equivalente en global.css usan var(--...).
+  Las específicas del tema oscuro se definen aquí.
+*/
+.root {
+  --login-bg:          #0e0e0e;
+  --login-surface:     var(--color-sidebar);   /* #171717 */
+  --login-accent:      var(--color-accent);    /* #d4a017 */
+  --login-accent-dim:  #c49015;
+  --login-border:      #2a2a2a;
+  --login-text-1:      #f0f0f0;
+  --login-text-2:      #555555;
+  --login-text-3:      #2e2e2e;
+  --login-input-bg:    #0e0e0e;
+  --login-input-text:  #e8e8e8;
+  --login-placeholder: #3a3a3a;
+
+  min-height: 100vh;
+  background: var(--login-bg);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Fondo de grid ──────────────────────── */
+
+.gridBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212, 160, 23, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 160, 23, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 160, 23, 0.08) 0%, transparent 70%);
+  top: -80px;
+  right: -80px;
+  pointer-events: none;
+}
+
+/* ─── Lado izquierdo ─────────────────────── */
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 44px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandText {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--login-text-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #2a2a2a;
+  max-width: 320px;
+}
+
+.tagline strong {
+  color: var(--login-accent);
+  font-weight: 500;
+}
+
+.bottomLabel {
+  font-size: 11px;
+  color: var(--login-text-3);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Lado derecho ───────────────────────── */
+
+.right {
+  width: 420px;
+  background: var(--login-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 44px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Línea separadora ámbar */
+.right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(212, 160, 23, 0.3) 40%,
+    rgba(212, 160, 23, 0.3) 60%,
+    transparent
+  );
+}
+
+.formWrap {
+  width: 100%;
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.heading {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--login-text-1);
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: var(--font-size-sm);
+  color: var(--login-text-2);
+  margin-bottom: 32px;
+}
+
+/* ─── Error ──────────────────────────────── */
+
+.errorBox {
+  background: var(--color-red-bg);
+  border: 1px solid var(--color-red);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: var(--font-size-sm);
+  color: var(--color-red);
+  margin-bottom: 18px;
+}
+
+/* ─── Campos ─────────────────────────────── */
+
+.field {
+  margin-bottom: 18px;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--login-text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  background: var(--login-input-bg);
+  border: 1px solid var(--login-border);
+  border-radius: var(--radius-md);
+  padding: 11px 14px;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-sans);
+  color: var(--login-input-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.input::placeholder {
+  color: var(--login-placeholder);
+}
+
+.input:focus {
+  border-color: var(--login-accent);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.08);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #444;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.eyeBtn:hover {
+  color: var(--login-text-2);
+}
+
+/* ─── Meta (recordar sesión) ─────────────── */
+
+.meta {
+  margin-top: 4px;
+  margin-bottom: 28px;
+}
+
+.checkWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-sans);
+}
+
+.check {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--login-border);
+  border-radius: var(--radius-sm);
+  background: var(--login-input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.checkActive {
+  background: var(--login-accent);
+  border-color: var(--login-accent);
+}
+
+.checkLabel {
+  font-size: 12px;
+  color: var(--login-text-2);
+  user-select: none;
+}
+
+/* ─── Botón principal ────────────────────── */
+
+.submitBtn {
+  width: 100%;
+  background: var(--login-accent);
+  color: #0e0e0e;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--login-accent-dim);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.submitBtn:disabled {
+  cursor: not-allowed;
+}
+
+.submitLoading {
+  background: var(--login-accent-dim);
+}
+
+/* ─── Pie ────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background: var(--login-border);
+  margin: 28px 0 20px;
+}
+
+.version {
+  text-align: center;
+  font-size: 11px;
+  color: var(--login-text-3);
+  letter-spacing: 0.03em;
+}
+
+/* ─── Animación spinner ──────────────────── */
+
+@keyframes sgc-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Responsive ─────────────────────────── */
+
+@media (max-width: 700px) {
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    padding: 40px 28px;
+  }
+
+  .right::before {
+    display: none;
+  }
+}
