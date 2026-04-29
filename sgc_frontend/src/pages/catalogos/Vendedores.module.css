@@ -28,7 +28,7 @@ Usa las variables CSS globales definidas en src/styles/global.css
   gap: 0.4rem;
   padding: 0.45rem 0.9rem;
   background: var(--color-accent);
-  color: #1a1200;
+  color: var(--color-text-4);
   border: none;
   border-radius: 7px;
   font-size: 0.8125rem;

@@ -1,50 +1,56 @@
 .wrapper {
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: var(--surface);
+  background: var(--color-surface);
   width: 100%;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
 }
 
 /* ── Head ── */
 .thead {
-  background: var(--app-bg);
+  background: var(--color-sidebar);
 }
 
 .th {
   text-align: left;
-  padding: 9px 14px;
+  padding: 10px 14px;
   font-size: 0.7rem;
   font-weight: 600;
-  color: var(--text-2);
-  letter-spacing: 0.06em;
+  color: color-mix(in srgb, var(--color-text-4) 70%, transparent);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--border);
   white-space: nowrap;
+  border-right: 1px solid color-mix(in srgb, var(--color-text-4) 10%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 100%, transparent);
+}
+
+.th:last-child {
+  border-right: none;
 }
 
 .thActions {
   width: 44px;
-  padding: 9px 8px;
+  padding: 10px 8px;
 }
 
-/* ── Body ── */
+/* ── Body rows ── */
 .tr {
-  transition: background 0.12s;
+  transition: background 0.1s;
 }
 
-.tr:not(:last-child) .td {
-  border-bottom: 1px solid var(--border);
+/* Alternate row tint */
+.tr:nth-child(even) .td {
+  background: color-mix(in srgb, var(--color-bg) 60%, transparent);
 }
 
 .tr:hover .td {
-  background: var(--app-bg);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent) !important;
 }
 
 .clickable {
@@ -53,8 +59,18 @@
 
 .td {
   padding: 10px 14px;
-  color: var(--text-1);
+  color: var(--color-text-1);
   vertical-align: middle;
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+
+.td:last-child {
+  border-right: none;
+}
+
+.tr:last-child .td {
+  border-bottom: none;
 }
 
 .tdActions {
@@ -70,36 +86,44 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: none;
   background: transparent;
-  color: var(--text-2);
+  color: var(--color-text-2);
   cursor: pointer;
   transition: background 0.12s, color 0.12s;
-  position: relative;
-  z-index: 1;
 }
 
 .ellipsisBtn:hover {
-  background: var(--border);
-  color: var(--text-1);
+  background: var(--color-border);
+  color: var(--color-text-1);
 }
 
 .ellipsisBtnActive {
-  background: var(--border);
-  color: var(--accent, #d4a017);
+  background: var(--color-border);
+  color: var(--color-accent);
+}
+
+/*
+ * ── Z-index fix ───────────────────────────────────────────────
+ * When a dropdown is open (.menuOpen on wrapper), hide every
+ * ellipsis button that is NOT the active one. Without this,
+ * buttons from later DOM rows paint on top of the fixed dropdown.
+ */
+.menuOpen .ellipsisBtn:not(.ellipsisBtnActive) {
+  visibility: hidden;
 }
 
 /* ── Dropdown ── */
 .dropdown {
-  z-index: 999;
+  z-index: var(--z-tooltip);
   min-width: 148px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: 4px;
   list-style: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
   animation: dropIn 0.12s ease;
 }
 
@@ -112,69 +136,69 @@
   display: block;
   width: 100%;
   padding: 7px 10px;
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
   text-align: left;
   background: transparent;
   border: none;
-  border-radius: 5px;
-  color: var(--text-1);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-1);
   cursor: pointer;
   transition: background 0.1s;
 }
 
 .dropdownItem:hover {
-  background: var(--app-bg);
+  background: var(--color-bg);
 }
 
 .dropdownItemDanger {
-  color: var(--red);
+  color: var(--color-red);
 }
 
 .dropdownItemDanger:hover {
-  background: color-mix(in srgb, var(--red) 10%, transparent);
+  background: var(--color-red-bg);
 }
 
 /* ── States ── */
 .stateCell {
   padding: 2.5rem 1rem;
   text-align: center;
-  color: var(--text-2);
-  font-size: 0.85rem;
+  color: var(--color-text-2);
+  font-size: var(--font-size-sm);
 }
 
 .errorState {
   display: block;
   margin-bottom: 0.75rem;
-  color: var(--red);
+  color: var(--color-red);
 }
 
 .retryBtn {
   display: inline-block;
   padding: 5px 14px;
-  font-size: 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--text-1);
+  color: var(--color-text-1);
   cursor: pointer;
   transition: background 0.12s;
 }
 
 .retryBtn:hover {
-  background: var(--app-bg);
+  background: var(--color-bg);
 }
 
 /* ── Skeleton ── */
 .skeletonRow .td {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .skeleton {
   display: block;
   height: 13px;
   width: 65%;
-  border-radius: 4px;
-  background: var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--color-border);
   animation: shimmer 1.4s ease-in-out infinite;
 }
 
