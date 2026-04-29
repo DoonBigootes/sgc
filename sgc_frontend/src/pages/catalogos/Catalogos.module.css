@@ -1,0 +1,203 @@
+/*
+============================================================
+ESTILOS: Catálogos Generales
+ARCHIVO: src/pages/catalogos/Catalogos.module.css
+============================================================
+Usa las variables CSS globales definidas en src/styles/global.css
+============================================================
+*/
+
+/* ── Contenedor principal ────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+/* ── Layout: nav + tabla ─────────────────────────────────────────── */
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
+  padding: 1.5rem;
+  padding-top: 1rem;
+}
+
+/* ── Nav lateral de catálogos ────────────────────────────────────── */
+.catalogNav {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-self: flex-start;
+  /* Sombra sutil */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.navLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+  padding: 0 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.navItem {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 450;
+  color: var(--color-text-2);
+  transition: background 0.12s ease, color 0.12s ease;
+  line-height: 1.4;
+}
+
+.navItem:hover {
+  background: var(--color-bg);
+  color: var(--color-text-1);
+}
+
+.navItemActive {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 80%, #6b4f00);
+  font-weight: 600;
+}
+
+.navItemActive:hover {
+  background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 80%, #6b4f00);
+}
+
+/* ── Área de tabla ───────────────────────────────────────────────── */
+.tableArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Botón primario (acción del PageHeader) ──────────────────────── */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.btnPrimary:hover {
+  background: color-mix(in srgb, var(--color-accent) 88%, #000);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.btnPrimary:active {
+  background: color-mix(in srgb, var(--color-accent) 78%, #000);
+}
+
+/* ── Formulario en modales ───────────────────────────────────────── */
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-1);
+}
+
+.required {
+  color: var(--color-red);
+  margin-left: 2px;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  font-size: 0.875rem;
+  color: var(--color-text-1);
+  background: var(--color-surface, #fff);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.inputError {
+  border-color: var(--color-red);
+}
+
+.inputError:focus {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-red) 15%, transparent);
+}
+
+.errorMsg {
+  font-size: 0.75rem;
+  color: var(--color-red);
+  margin: 0;
+}
+
+/* ── Texto de confirmación de eliminar ───────────────────────────── */
+.deleteText {
+  font-size: 0.875rem;
+  color: var(--color-text-2);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.deleteText strong {
+  color: var(--color-text-1);
+  font-weight: 600;
+}
+
+/* ── Mensaje de error en modal de eliminar ───────────────────────── */
+.deleteErrMsg {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: color-mix(in srgb, var(--color-red) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-red) 25%, transparent);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-red);
+  line-height: 1.45;
+}

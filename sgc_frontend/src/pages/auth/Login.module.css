@@ -1,20 +1,5 @@
-/*
-  Variables locales del login (tema oscuro propio).
-  Las que tienen equivalente en global.css usan var(--...).
-  Las específicas del tema oscuro se definen aquí.
-*/
 .root {
   --login-bg:          #0e0e0e;
-  --login-surface:     var(--color-sidebar);   /* #171717 */
-  --login-accent:      var(--color-accent);    /* #d4a017 */
-  --login-accent-dim:  #c49015;
-  --login-border:      #2a2a2a;
-  --login-text-1:      #f0f0f0;
-  --login-text-2:      #555555;
-  --login-text-3:      #2e2e2e;
-  --login-input-bg:    #0e0e0e;
-  --login-input-text:  #e8e8e8;
-  --login-placeholder: #3a3a3a;
 
   min-height: 100vh;
   background: var(--login-bg);
@@ -67,7 +52,7 @@
 .brandText {
   font-size: 12px;
   font-weight: 500;
-  color: var(--login-text-2);
+  color: var(--color-text-2);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -77,18 +62,18 @@
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: #2a2a2a;
+  color: var(--color-text-3);
   max-width: 320px;
 }
 
 .tagline strong {
-  color: var(--login-accent);
+  color: var(--color-accent);
   font-weight: 500;
 }
 
 .bottomLabel {
   font-size: 11px;
-  color: var(--login-text-3);
+  color: var(--color-text-3);
   letter-spacing: 0.05em;
 }
 
@@ -96,7 +81,7 @@
 
 .right {
   width: 420px;
-  background: var(--login-surface);
+  background: var(--color-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,13 +120,13 @@
 .heading {
   font-size: 22px;
   font-weight: 500;
-  color: var(--login-text-1);
+  color: var(--color-text-1);
   margin-bottom: 6px;
 }
 
 .sub {
   font-size: var(--font-size-sm);
-  color: var(--login-text-2);
+  color: var(--color-text-2);
   margin-bottom: 32px;
 }
 
@@ -167,7 +152,7 @@
   display: block;
   font-size: 11px;
   font-weight: 500;
-  color: var(--login-text-2);
+  color: var(--color-text-2);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 8px;
@@ -179,24 +164,24 @@
 
 .input {
   width: 100%;
-  background: var(--login-input-bg);
-  border: 1px solid var(--login-border);
+  background: var(--input-bg);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 11px 14px;
   font-size: var(--font-size-sm);
   font-family: var(--font-sans);
-  color: var(--login-input-text);
+  color: var(--color-text-2);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   -webkit-appearance: none;
 }
 
 .input::placeholder {
-  color: var(--login-placeholder);
+  color: var(--color-text-3);
 }
 
 .input:focus {
-  border-color: var(--login-accent);
+  border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.08);
 }
 
@@ -221,7 +206,7 @@
 }
 
 .eyeBtn:hover {
-  color: var(--login-text-2);
+  color: var(--color-text-2);
 }
 
 /* ─── Meta (recordar sesión) ─────────────── */
@@ -245,9 +230,9 @@
 .check {
   width: 14px;
   height: 14px;
-  border: 1px solid var(--login-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: var(--login-input-bg);
+  background: var(--input-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,13 +241,13 @@
 }
 
 .checkActive {
-  background: var(--login-accent);
-  border-color: var(--login-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .checkLabel {
   font-size: 12px;
-  color: var(--login-text-2);
+  color: var(--color-text-2);
   user-select: none;
 }
 
@@ -270,13 +255,13 @@
 
 .submitBtn {
   width: 100%;
-  background: var(--login-accent);
+  background: var(--color-accent);
   color: #0e0e0e;
   border: none;
   border-radius: var(--radius-md);
   padding: 12px;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-size: var(--font-size-base);
+  font-weight: 600;
   font-family: var(--font-sans);
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
@@ -288,7 +273,7 @@
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: var(--login-accent-dim);
+  background: var(--color-accent-dim);
 }
 
 .submitBtn:active:not(:disabled) {
@@ -300,21 +285,21 @@
 }
 
 .submitLoading {
-  background: var(--login-accent-dim);
+  background: var(--color-accent-dim);
 }
 
 /* ─── Pie ────────────────────────────────── */
 
 .divider {
   height: 1px;
-  background: var(--login-border);
+  background: var(--color-border);
   margin: 28px 0 20px;
 }
 
 .version {
   text-align: center;
   font-size: 11px;
-  color: var(--login-text-3);
+  color: var(--color-text-3);
   letter-spacing: 0.03em;
 }
 

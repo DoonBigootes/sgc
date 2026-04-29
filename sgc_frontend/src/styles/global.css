@@ -4,6 +4,7 @@
   --color-surface:   #ffffff;
   --color-sidebar:   #171717;
   --color-accent:    #d4a017;
+  --color-accent-dim:#c49015;
 
   /* Texto */
   --color-text-1:    #171717;
@@ -45,6 +46,9 @@
 
   /* Botones */
   --button-padding: 0.2rem 0.3rem;
+
+  /* Inputs */
+  --input-bg:     #ececec;
 }
 
 *, *::before, *::after {
