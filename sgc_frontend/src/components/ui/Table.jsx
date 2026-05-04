@@ -1,3 +1,136 @@
+
+
+/**
+ * ============================================================
+ * COMPONENTE: Table — SGC Sistema de Gestión Comercial
+ * Archivo   : src/components/ui/Table.jsx
+ * ============================================================
+ *
+ * Tabla reutilizable que maneja fetch, loading, error y vacío.
+ * NO llama a `api` directamente — recibe una función de servicio.
+ *
+ * ── PROPS ───────────────────────────────────────────────────
+ *
+ * fetchFn     {Function}  OBLIGATORIO (o `data`).
+ *                         Función sin argumentos que retorna una Promise.
+ *                         Debe venir envuelta en useCallback en el padre.
+ *                         Acepta que el servicio retorne: Array | { data: Array }
+ *
+ * data        {Array}     Alternativa a fetchFn para datos estáticos.
+ *
+ * columns     {Array}     OBLIGATORIO. Definir FUERA del componente (nivel módulo).
+ *   Cada objeto:
+ *     key     {string}    Nombre del campo en el objeto de datos.
+ *     label   {string}    Texto del encabezado de columna.
+ *     hidden  {boolean}   Si true, la columna no se renderiza. (ej: id)
+ *     render  {Function}  Opcional. (value, row) => ReactNode
+ *
+ * rowActions  {Array}     Opcional. Agrega columna de menú (ícono ⋮) al final.
+ *                         Definir FUERA del componente (nivel módulo).
+ *   Cada objeto:
+ *     label   {string}    Texto del ítem de menú.
+ *     onClick {Function}  (row) => void — recibe el objeto completo de la fila.
+ *     danger  {boolean}   Opcional. Si true, el ítem se renderiza en rojo.
+ *
+ * emptyText   {string}    Mensaje cuando no hay filas. Default: 'Sin resultados.'
+ * onRowClick  {Function}  (row) => void — click en fila. No interfiere con rowActions.
+ * loading     {boolean}   Fuerza estado de carga desde el padre.
+ * className   {string}    Clase CSS adicional para el contenedor.
+ *
+ * ── REGLA CRÍTICA: useCallback ──────────────────────────────
+ *
+ * fetchFn SIEMPRE debe definirse con useCallback en el componente padre.
+ * Si se pasa una función anónima directamente en JSX, React crea una nueva
+ * referencia en cada render y la tabla entra en un loop infinito de fetches.
+ *
+ *   ✅ CORRECTO:
+ *   const fetchClientes = useCallback(
+ *     () => getClientes({ activo: true }),
+ *     []
+ *   )
+ *   <Table fetchFn={fetchClientes} ... />
+ *
+ *   ❌ INCORRECTO — loop infinito:
+ *   <Table fetchFn={() => getClientes({ activo: true })} ... />
+ *
+ * ── REFETCH AUTOMÁTICO POR FILTROS ──────────────────────────
+ *
+ * Para que la tabla recargue al cambiar filtros, incluir el filtro
+ * como dependencia del useCallback. Cuando el valor cambia, fetchFn
+ * obtiene una nueva referencia y la tabla re-ejecuta el fetch.
+ *
+ *   const [tiendaId, setTiendaId] = useState(1)
+ *   const fetchFacturas = useCallback(
+ *     () => getFacturas({ id_tienda: tiendaId }),
+ *     [tiendaId]   // ← re-fetch automático al cambiar tiendaId
+ *   )
+ *
+ * ── PATRÓN COMPLETO DE USO ───────────────────────────────────
+ *
+ *   // 1. En el servicio (services/catalogo.service.js):
+ *   export async function getClientes(params) {
+ *     const res = await api.get('/clientes', { params })
+ *     return res.data
+ *   }
+ *
+ *   // 2. En la página:
+ *   import { useCallback, useState } from 'react'
+ *   import { getClientes } from '../../services/catalogo.service'
+ *   import Table from '../../components/ui/Table'
+ *
+ *   // Columnas y acciones: SIEMPRE fuera del componente (referencias estables)
+ *   const COLUMNS = [
+ *     { key: 'id',      label: 'ID',      hidden: true },
+ *     { key: 'codigo',  label: 'Código' },
+ *     { key: 'nombre',  label: 'Nombre' },
+ *     { key: 'activo',  label: 'Estado',
+ *       render: (val) => <Badge active={val} /> },
+ *   ]
+ *
+ *   const ROW_ACTIONS = [
+ *     { label: 'Editar',   onClick: (row) => { ... } },
+ *     { label: 'Eliminar', onClick: (row) => { ... }, danger: true },
+ *   ]
+ *
+ *   export default function Clientes() {
+ *     const [soloActivos, setSoloActivos] = useState(true)
+ *
+ *     const fetchClientes = useCallback(
+ *       () => getClientes({ activo: soloActivos }),
+ *       [soloActivos]
+ *     )
+ *
+ *     return (
+ *       <Table
+ *         columns={COLUMNS}
+ *         fetchFn={fetchClientes}
+ *         rowActions={ROW_ACTIONS}
+ *         emptyText="No hay clientes registrados."
+ *       />
+ *     )
+ *   }
+ *
+ * ── VARIANTE SIN rowActions ──────────────────────────────────
+ *
+ *   // Si la página no necesita menú de opciones, omitir rowActions.
+ *   <Table columns={COLUMNS} fetchFn={fetchProductos} />
+ *
+ * ── VARIANTE CON onRowClick ──────────────────────────────────
+ *
+ *   // Para navegar al detalle al hacer click en una fila:
+ *   <Table
+ *     columns={COLUMNS}
+ *     fetchFn={fetchFacturas}
+ *     onRowClick={(row) => navigate(`/facturacion/facturas/${row.id}`)}
+ *   />
+ *
+ * ── VARIANTE CON DATOS ESTÁTICOS ────────────────────────────
+ *
+ *   // Para tablas cuya data ya fue obtenida por el padre:
+ *   <Table columns={COLUMNS} data={misRegistros} />
+ * ============================================================
+ */
+
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Icons } from '../../utils/icons';
 import styles from './Table.module.css';

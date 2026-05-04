@@ -56,3 +56,15 @@ export const getVendedores  = ()        => api.get('/vendedores').then(r => r.da
 export const createVendedor = (data)    => api.post('/vendedores', data)
 export const updateVendedor = (id,data) => api.put(`/vendedores/${id}`, data)
 export const deleteVendedor = (id)      => api.delete(`/vendedores/${id}`)
+
+export const getClientes    = ()       => api.get('/clientes').then(r => r.data)
+export const createCliente = (data)    => api.post('/clientes', data)
+export const updateCliente = (id,data) => api.put(`/clientes/${id}`, data)
+export const deleteCliente = (id)      => api.delete(`/clientes/${id}`)
+export const getTiposCliente = ()      => api.get('/tipos-cliente').then(r => r.data)
+
+export const getProductos = (params) => api.get('/productos', { params })
+export const getProducto = (id) => api.get(`/productos/${id}`)
+export const createProducto = (data) => api.post('/productos', data)
+export const updateProducto = (id, data) => api.put(`/productos/${id}`, data)
+export const toggleProducto = (id) => api.patch(`/productos/${id}/estado`)

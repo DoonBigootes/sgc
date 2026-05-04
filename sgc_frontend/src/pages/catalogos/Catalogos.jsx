@@ -13,6 +13,7 @@ import Table from '../../components/ui/Table'
 import Modal from '../../components/ui/Modal'
 import { getCatalogo, createCatalogo, updateCatalogo, deleteCatalogo } from '../../services/catalogo.service'
 import styles from './Catalogos.module.css'
+import { Icons } from '../../utils/icons'
 
 // ─── Definición de catálogos disponibles ──────────────────────────────────────
 // slug: coincide con el segmento de la URL del backend (/api/v1/:slug)
@@ -198,9 +199,7 @@ export default function Catalogos() {
               setCreateModal(true)
             }}
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
-            </svg>
+            <Icons.plus />
             Nuevo registro
           </button>
         }

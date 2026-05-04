@@ -5,6 +5,7 @@ require('dotenv').config()
 
 const catalogosRouter  = require('./routes/catalogos/catalogos')
 const vendedoresRouter = require('./routes/catalogos/vendedores')
+const clientesRouter = require('./routes/catalogos/clientes')
 
 const app = express()
 
@@ -60,21 +61,9 @@ app.post('/api/v1/auth/login', (req, res) => {
 })
 
 
-// ─── VENDEDORES ──────────────────────────────────────────────────────────────
-// Router dedicado (campos propios: cui, nit, telefono, activo):
-//   GET    /api/v1/vendedores        → listar  (?activo=true/false opcional)
-//   GET    /api/v1/vendedores/:id    → obtener uno
-//   POST   /api/v1/vendedores        → crear
-//   PUT    /api/v1/vendedores/:id    → editar
-//   DELETE /api/v1/vendedores/:id    → eliminar
+// Catalogos
+app.use('/api/v1/clientes', clientesRouter)
 app.use('/api/v1/vendedores', vendedoresRouter)
-
-// ─── CATÁLOGOS ───────────────────────────────────────────────────────────────
-// Router genérico para catálogos simples (solo tienen id + nombre):
-//   GET    /api/v1/:catalogo       → listar
-//   POST   /api/v1/:catalogo       → crear
-//   PUT    /api/v1/:catalogo/:id   → editar
-//   DELETE /api/v1/:catalogo/:id   → eliminar
 app.use('/api/v1', catalogosRouter)
 
 // ─── 404 genérico ────────────────────────────────────────────────────────────
@@ -90,6 +79,7 @@ app.use((err, req, res, next) => {
 
 // ─── Arranque ────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000
+
 app.listen(PORT, () => {
   console.log(`🚀 Backend corriendo en http://localhost:${PORT}`)
 })

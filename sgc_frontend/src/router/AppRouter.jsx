@@ -8,6 +8,7 @@ import AppLayout from '../components/layout/AppLayout'
 // Catalogo
 import Catalogos from '../pages/catalogos/Catalogos'
 import Vendedores from '../pages/catalogos/Vendedores'
+import Clientes from '../pages/catalogos/Clientes'
 
 export default function AppRouter() {
   return (
@@ -26,6 +27,7 @@ export default function AppRouter() {
           {/* Catalogos */}
           <Route path="/catalogos/general" element={<Catalogos />} />
           <Route path="/catalogos/vendedores" element={<Vendedores />} />
+          <Route path='/catalogos/clientes' element={<Clientes />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" />} />

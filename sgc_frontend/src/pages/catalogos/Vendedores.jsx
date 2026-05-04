@@ -17,6 +17,7 @@ import {
   deleteVendedor,
 } from '../../services/catalogo.service'
 import styles from './Vendedores.module.css'
+import { Icons } from '../../utils/icons'
 
 // ─── Columnas de la tabla ─────────────────────────────────────────────────────
 // Definidas fuera del componente para referencias estables (ver Table.jsx docs).
@@ -221,9 +222,7 @@ export default function Vendedores() {
               setCreateModal(true)
             }}
           >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"/>
-            </svg>
+            <Icons.plus />
             Nuevo vendedor
           </button>
         }

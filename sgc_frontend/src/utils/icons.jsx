@@ -24,7 +24,8 @@ import {
     X,
     ChevronsDown,
     ChevronsUp,
-    EllipsisVertical
+    EllipsisVertical,
+    Plus
 } from 'lucide-react'
 
 export const Icons = {
@@ -53,5 +54,6 @@ export const Icons = {
   equis:            X,
   collapse:         ChevronsUp,
   expand:           ChevronsDown,
-  ellipsis:         EllipsisVertical
+  ellipsis:         EllipsisVertical,
+  plus:             Plus
 }
