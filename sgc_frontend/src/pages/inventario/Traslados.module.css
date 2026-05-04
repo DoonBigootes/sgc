@@ -1,0 +1,395 @@
+/* ============================================================
+   PÁGINA: Traslados
+   ARCHIVO: src/pages/inventario/Traslados.module.css
+   ============================================================ */
+
+/* ── Contenedor de página ─────────────────────────────────── */
+.page    { display: flex; flex-direction: column; height: 100%; }
+.content { flex: 1; min-height: 0; padding: 1rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+/* ── Muted ────────────────────────────────────────────────── */
+.muted { color: var(--color-text-3); font-style: italic; }
+
+/* ── Botón primario ───────────────────────────────────────── */
+.btnPrimary {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--color-accent); color: var(--color-text-4);
+  border: none; border-radius: 7px;
+  font-size: 0.8125rem; font-weight: 600; cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.btnPrimary:hover {
+  background: color-mix(in srgb, var(--color-accent) 88%, #000);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+/* ── Botón secundario ─────────────────────────────────────── */
+.btnSecondary {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--color-surface); color: var(--color-text-2);
+  border: 1px solid var(--color-border); border-radius: 7px;
+  font-size: 0.8125rem; font-weight: 500; cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.btnSecondary:hover {
+  background: var(--color-bg);
+  border-color: color-mix(in srgb, var(--color-text-3) 50%, transparent);
+}
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badgeActive  { display:inline-flex; align-items:center; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.75rem; font-weight:600; background:var(--color-green-bg); color:var(--color-green); }
+.badgeInactive{ display:inline-flex; align-items:center; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.75rem; font-weight:600; background:var(--color-red-bg); color:var(--color-red); }
+.badgeWarning { display:inline-flex; align-items:center; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.75rem; font-weight:600; background:color-mix(in srgb, var(--color-amber) 15%, transparent); color:var(--color-amber); }
+.badgeNeutral { display:inline-flex; align-items:center; padding:0.2rem 0.6rem; border-radius:99px; font-size:0.75rem; font-weight:600; background:color-mix(in srgb, var(--color-text-3) 12%, transparent); color:var(--color-text-2); }
+
+/* ── Filtros ──────────────────────────────────────────────── */
+.filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 160px;
+}
+
+.filterLabel {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-2);
+}
+
+.filterActions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* ── Select ───────────────────────────────────────────────── */
+.select {
+  width: 100%; padding: 0.5rem 0.75rem; padding-right: 2.25rem;
+  border: 1px solid var(--color-border); border-radius: 7px;
+  font-size: 0.875rem; font-family: var(--font-sans);
+  color: var(--color-text-1); background: var(--color-surface);
+  cursor: pointer; outline: none; appearance: none; box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.75rem center;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+/* ── Input date ───────────────────────────────────────────── */
+.inputDate {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border); border-radius: 7px;
+  font-size: 0.875rem; font-family: var(--font-sans);
+  color: var(--color-text-1); background: var(--color-surface);
+  outline: none; box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.inputDate:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+/* ── Formulario ───────────────────────────────────────────── */
+.form      { display: flex; flex-direction: column; gap: 1rem; }
+.row1      { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+.row2      { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.formField { display: flex; flex-direction: column; gap: 0.375rem; }
+
+/* ── Labels ───────────────────────────────────────────────── */
+.label    { font-size: 0.8125rem; font-weight: 500; color: var(--color-text-1); display: flex; align-items: center; gap: 0.4rem; }
+.required { color: var(--color-red); margin-left: 2px; }
+.optional { color: var(--color-text-3); font-weight: 400; margin-left: 3px; font-size: 0.78rem; }
+
+/* ── Input texto ──────────────────────────────────────────── */
+.input {
+  width: 100%; padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border); border-radius: 7px;
+  font-size: 0.875rem; font-family: var(--font-sans);
+  color: var(--color-text-1); background: var(--color-surface);
+  outline: none; box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+.input::placeholder { color: var(--color-text-3); }
+
+/* ── Error ────────────────────────────────────────────────── */
+.errorMsg {
+  font-size: 0.78rem; color: var(--color-red);
+  margin: 0; padding: 0.45rem 0.65rem;
+  background: color-mix(in srgb, var(--color-red) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-red) 20%, transparent);
+  border-radius: 6px;
+}
+
+/* ── Divisor de sección ───────────────────────────────────── */
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: 0.25rem;
+}
+
+.sectionLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-1);
+  letter-spacing: 0.01em;
+}
+
+/* ── Tabla de detalle (en modal crear) ───────────────────── */
+.detalleTable {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8375rem;
+}
+
+.table thead tr {
+  background: color-mix(in srgb, var(--color-border) 40%, transparent);
+}
+
+.table th {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+  text-align: left;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text-1);
+  border-top: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+}
+
+.thRight, .tdRight { text-align: right; }
+.thCenter, .tdCenter { text-align: center; }
+
+.tdCode {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--color-text-2);
+}
+
+/* ── Input de cantidad dentro de tabla ───────────────────── */
+.inputQty {
+  width: 90px;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  color: var(--color-text-1);
+  text-align: right;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.inputQty:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+/* ── Botón de eliminar fila ──────────────────────────────── */
+.btnRemove {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  background: transparent; border: none; border-radius: 6px;
+  color: var(--color-text-3); cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btnRemove:hover {
+  background: var(--color-red-bg);
+  color: var(--color-red);
+}
+
+/* ── Empty detalle ────────────────────────────────────────── */
+.emptyDetalle {
+  padding: 1.25rem;
+  text-align: center;
+  background: color-mix(in srgb, var(--color-border) 30%, transparent);
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-3);
+  font-size: 0.85rem;
+}
+
+/* ── Lista de productos (modal selector) ─────────────────── */
+.prodList {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prodEmpty {
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text-3);
+  font-size: 0.85rem;
+}
+
+.prodItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  transition: background 0.12s ease;
+}
+.prodItem:last-child { border-bottom: none; }
+.prodItem:hover { background: color-mix(in srgb, var(--color-accent) 6%, transparent); }
+
+.prodItemSelected {
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent) !important;
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  outline-offset: -2px;
+}
+
+.prodCode {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--color-text-3);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.prodDesc {
+  font-size: 0.85rem;
+  color: var(--color-text-1);
+  font-weight: 500;
+}
+
+/* ── Vista de detalle (modal Ver) ────────────────────────── */
+.viewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.viewMeta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: color-mix(in srgb, var(--color-border) 25%, transparent);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.viewMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.viewMetaLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-3);
+}
+
+.viewMetaValue {
+  font-size: 0.875rem;
+  color: var(--color-text-1);
+  font-weight: 500;
+}
+
+/* ── Ruta origen → destino ───────────────────────────────── */
+.viewRoute {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.viewRouteBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.viewRouteLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-3);
+}
+
+.viewRouteName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-1);
+}
+
+.viewRouteArrow {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ── Detalle header ───────────────────────────────────────── */
+.viewDetailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.viewDetailTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-1);
+}

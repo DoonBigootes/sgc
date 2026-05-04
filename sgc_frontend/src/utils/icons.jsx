@@ -25,7 +25,9 @@ import {
     ChevronsDown,
     ChevronsUp,
     EllipsisVertical,
-    Plus
+    Plus,
+    RefreshCcw,
+    Search
 } from 'lucide-react'
 
 export const Icons = {
@@ -55,5 +57,7 @@ export const Icons = {
   collapse:         ChevronsUp,
   expand:           ChevronsDown,
   ellipsis:         EllipsisVertical,
-  plus:             Plus
+  plus:             Plus,
+  refresh:          RefreshCcw,
+  search:           Search
 }

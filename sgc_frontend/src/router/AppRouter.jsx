@@ -6,9 +6,12 @@ import AppLayout from '../components/layout/AppLayout'
 
 // import de paginas
 // Catalogo
-import Catalogos from '../pages/catalogos/Catalogos'
-import Vendedores from '../pages/catalogos/Vendedores'
-import Clientes from '../pages/catalogos/Clientes'
+import Vendedores from '../pages/catalogos/vendedores'
+import Productos from '../pages/catalogos/productos'
+import Clientes from '../pages/catalogos/clientes'
+import Catalogos from '../pages/catalogos/catalogos'
+import Existencia from '../pages/inventario/Existencia'
+import Traslados from '../pages/inventario/traslados'
 
 export default function AppRouter() {
   return (
@@ -28,6 +31,11 @@ export default function AppRouter() {
           <Route path="/catalogos/general" element={<Catalogos />} />
           <Route path="/catalogos/vendedores" element={<Vendedores />} />
           <Route path='/catalogos/clientes' element={<Clientes />} />
+          <Route path='/catalogos/productos' element={<Productos />} />
+
+          {/* Inventario  */}
+          <Route path='/inventario/existencia' element={<Existencia />} />
+          <Route path='/inventario/traslados' element={<Traslados />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" />} />

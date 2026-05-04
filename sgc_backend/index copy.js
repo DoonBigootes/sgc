@@ -1,22 +1,16 @@
-const express    = require('express')
-const jwt        = require('jsonwebtoken')
-const cors       = require('cors')
+const express = require('express')
+const jwt     = require('jsonwebtoken')
+const cors    = require('cors')
 require('dotenv').config()
 
-const verifyToken      = require('./middleware/auth')
-
-// ─── Catálogos ───────────────────────────────────────────────────────────────
+// catalogos
 const catalogosRouter  = require('./routes/catalogos/catalogos')
 const vendedoresRouter = require('./routes/catalogos/vendedores')
-const clientesRouter   = require('./routes/catalogos/clientes')
-const productosRouter  = require('./routes/catalogos/productos')
+const clientesRouter = require('./routes/catalogos/clientes')
+const productosRouter = require('./routes/catalogos/productos')
 
-// ─── Admin ───────────────────────────────────────────────────────────────────
-const tiendasRouter    = require('./routes/admin/tiendas')
-
-// ─── Inventario ──────────────────────────────────────────────────────────────
+// inventario
 const existenciaRouter = require('./routes/inventario/existencia')
-const trasladosRouter  = require('./routes/inventario/traslados')
 
 const app = express()
 
@@ -41,7 +35,7 @@ const FAKE_USER = {
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_temporal'
 
-// ─── AUTH (rutas públicas — van ANTES del middleware) ────────────────────────
+// ─── AUTH ────────────────────────────────────────────────────────────────────
 app.post('/api/v1/auth/login', (req, res) => {
   const { usuario, contra } = req.body
 
@@ -71,21 +65,15 @@ app.post('/api/v1/auth/login', (req, res) => {
   })
 })
 
-// ─── Middleware JWT — protege TODAS las rutas /api/v1/* que siguen ───────────
-app.use('/api/v1', verifyToken)
 
-// ─── Admin ───────────────────────────────────────────────────────────────────
-app.use('/api/v1/tiendas',    tiendasRouter)
-
-// ─── Catálogos ───────────────────────────────────────────────────────────────
-app.use('/api/v1/productos',  productosRouter)
-app.use('/api/v1/clientes',   clientesRouter)
+// Catalogos
+app.use('/api/v1/productos', productosRouter)
+app.use('/api/v1/clientes', clientesRouter)
 app.use('/api/v1/vendedores', vendedoresRouter)
-app.use('/api/v1',            catalogosRouter)   // maneja /:catalogo (marcas, tipos-*, etc.)
+app.use('/api/v1', catalogosRouter)
 
-// ─── Inventario ──────────────────────────────────────────────────────────────
+// Inventario
 app.use('/api/v1/inventario', existenciaRouter)
-app.use('/api/v1/traslados',  trasladosRouter)
 
 // ─── 404 genérico ────────────────────────────────────────────────────────────
 app.use((req, res) => {
